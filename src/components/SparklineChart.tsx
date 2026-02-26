@@ -22,34 +22,34 @@ export default function SparklineChart({
   const points = data.map((val, i) => {
     const x = (i / (data.length - 1)) * width;
     const y = height - ((val - min) / range) * (height - 8) - 4;
-    return `₹{x},₹{y}`;
+    return `${x},${y}`;
   });
 
   const polyline = points.join(" ");
 
   // Create fill path
   const fillPath =
-    `M 0,₹{height} ` +
-    points.map((p) => `L ₹{p}`).join(" ") +
-    ` L ₹{width},₹{height} Z`;
+    `M 0,${height} ` +
+    points.map((p) => `L ${p}`).join(" ") +
+    ` L ${width},${height} Z`;
 
   return (
     <svg
       width={width}
       height={height}
-      viewBox={`0 0 ₹{width} ₹{height}`}
+      viewBox={`0 0 ${width} ${height}`}
       preserveAspectRatio="none"
       className="w-full"
     >
       <defs>
-        <linearGradient id={`grad-₹{color.replace("#", "")}`} x1="0" y1="0" x2="0" y2="1">
+        <linearGradient id={`grad-${color.replace("#", "")}`} x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor={color} stopOpacity="0.3" />
           <stop offset="100%" stopColor={color} stopOpacity="0.02" />
         </linearGradient>
       </defs>
       <path
         d={fillPath}
-        fill={`url(#grad-₹{color.replace("#", "")})`}
+        fill={`url(#grad-${color.replace("#", "")})`}
       />
       <polyline
         points={polyline}

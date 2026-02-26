@@ -34,7 +34,7 @@ export default function IndicatorCard({
   compact = false,
 }: IndicatorCardProps) {
   const formatSubs = (n: number) =>
-    n >= 1000 ? `₹{(n / 1000).toFixed(1)}k` : n.toString();
+    n >= 1000 ? `${(n / 1000).toFixed(1)}k` : n.toString();
 
   return (
     <div

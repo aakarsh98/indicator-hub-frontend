@@ -214,7 +214,7 @@ export default function SignupPage() {
                   className="mt-0.5 h-4 w-4 rounded flex items-center justify-center flex-shrink-0 transition-all"
                   style={{
                     backgroundColor: agreed ? "#10B981" : "transparent",
-                    border: `2px solid ₹{agreed ? "#10B981" : "#3F3F46"}`,
+                    border: `2px solid ${agreed ? "#10B981" : "#3F3F46"}`,
                   }}
                 >
                   {agreed && (

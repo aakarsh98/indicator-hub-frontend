@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/accordion";
 import Navbar from "@/components/Navbar";
 import IndicatorCard from "@/components/IndicatorCard";
+import HomePricingSection from "@/components/HomePricingSection";
 import { indicators, testimonials, faqs } from "@/lib/mockData";
 
 export default function HomePage() {
@@ -232,11 +233,12 @@ export default function HomePage() {
                 ))}
               </ul>
               <Button
+                asChild
                 size="lg"
                 className="font-semibold px-8 h-11"
                 style={{ backgroundColor: "#10B981", color: "white" }}
               >
-                Start Selling →
+                <Link href="/signup?type=creator">Start Selling →</Link>
               </Button>
             </div>
 
@@ -291,117 +293,7 @@ export default function HomePage() {
       </section>
 
       {/* =========== PRICING =========== */}
-      <section id="pricing" className="px-4 py-20">
-        <div className="mx-auto max-w-6xl">
-          <h2 className="text-3xl font-bold text-center text-white mb-4">
-            Simple, Transparent Pricing
-          </h2>
-          <p className="text-center mb-14" style={{ color: "#71717A" }}>
-            No hidden fees. Creators earn, subscribers save.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              {
-                name: "Starter Indicators",
-                price: "₹9–15",
-                desc: "Basic trend & momentum tools",
-                popular: false,
-                features: [
-                  "1 indicator access",
-                  "Standard alerts",
-                  "Community support",
-                  "Cancel anytime",
-                ],
-              },
-              {
-                name: "Pro Indicators",
-                price: "₹19–35",
-                desc: "Advanced multi-factor strategies",
-                popular: true,
-                features: [
-                  "1 indicator access",
-                  "All alert conditions",
-                  "Creator support channel",
-                  "Setup guide included",
-                  "Cancel anytime",
-                ],
-              },
-              {
-                name: "Elite Indicators",
-                price: "₹39–49",
-                desc: "AI-powered & institutional-grade",
-                popular: false,
-                features: [
-                  "1 indicator access",
-                  "Priority alerts",
-                  "1-on-1 creator support",
-                  "Custom settings",
-                  "Early access to updates",
-                ],
-              },
-            ].map((tier) => (
-              <div
-                key={tier.name}
-                className="rounded-2xl p-8 border flex flex-col relative"
-                style={{
-                  backgroundColor: "#18181B",
-                  borderColor: tier.popular ? "#10B981" : "#27272A",
-                  boxShadow: tier.popular
-                    ? "0 0 40px rgba(16,185,129,0.1)"
-                    : "none",
-                }}
-              >
-                {tier.popular && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                    <Badge
-                      style={{ backgroundColor: "#10B981", color: "white" }}
-                      className="text-xs px-3 font-semibold"
-                    >
-                      Popular
-                    </Badge>
-                  </div>
-                )}
-                <h3 className="text-lg font-semibold text-white mb-1">
-                  {tier.name}
-                </h3>
-                <div className="flex items-baseline gap-1 mb-2">
-                  <span className="text-3xl font-bold text-white">
-                    {tier.price}
-                  </span>
-                  <span className="text-sm" style={{ color: "#71717A" }}>
-                    /mo
-                  </span>
-                </div>
-                <p className="text-sm mb-6" style={{ color: "#A1A1AA" }}>
-                  {tier.desc}
-                </p>
-                <ul className="flex flex-col gap-3 mb-8 flex-1">
-                  {tier.features.map((f) => (
-                    <li key={f} className="flex items-center gap-3 text-sm" style={{ color: "#A1A1AA" }}>
-                      <CheckCircle2
-                        className="h-4 w-4 flex-shrink-0"
-                        style={{ color: "#10B981" }}
-                      />
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-                <Button
-                  className="w-full font-semibold h-11"
-                  style={
-                    tier.popular
-                      ? { backgroundColor: "#10B981", color: "white" }
-                      : { backgroundColor: "transparent", borderColor: "#3F3F46", color: "#A1A1AA" }
-                  }
-                  variant={tier.popular ? "default" : "outline"}
-                >
-                  Browse Indicators
-                </Button>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <HomePricingSection />
 
       {/* =========== TESTIMONIALS =========== */}
       <section className="px-4 py-20 border-y" style={{ borderColor: "#18181B" }}>
@@ -466,7 +358,7 @@ export default function HomePage() {
             {faqs.map((faq, i) => (
               <AccordionItem
                 key={i}
-                value={`item-₹{i}`}
+                value={`item-${i}`}
                 className="rounded-xl border px-6"
                 style={{
                   backgroundColor: "#18181B",
@@ -525,7 +417,7 @@ export default function HomePage() {
               className="font-semibold px-8 h-12"
               style={{ borderColor: "#3F3F46", color: "#A1A1AA" }}
             >
-              <Link href="#creators">Start Selling</Link>
+              <Link href="/signup?type=creator">Start Selling</Link>
             </Button>
           </div>
         </div>

@@ -290,7 +290,7 @@ export default function AdminPage() {
                 >
                   <div
                     className="h-6 w-6 rounded-full flex items-center justify-center flex-shrink-0 text-xs mt-0.5"
-                    style={{ backgroundColor: `₹{item.color}20` }}
+                    style={{ backgroundColor: `${item.color}20` }}
                   >
                     {item.icon}
                   </div>

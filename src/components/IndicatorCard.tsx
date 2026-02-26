@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import SparklineChart from "./SparklineChart";
 
 interface IndicatorCardProps {
-  id: number;
+  id: string | number;
   slug: string;
   name: string;
   creator: string;
@@ -103,7 +103,7 @@ export default function IndicatorCard({
             </span>
           </span>
           <Link
-            href={`/indicator/₹{slug}`}
+            href={`/indicator/${slug}`}
             className="text-xs px-3 py-1.5 rounded-lg border transition-colors hover:border-emerald-500/50 hover:text-emerald-400"
             style={{ borderColor: "#3F3F46", color: "#A1A1AA" }}
           >

@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Search, LayoutGrid, List, SlidersHorizontal, X, TrendingUp, Users } from "lucide-react";
+import { Search, LayoutGrid, List, SlidersHorizontal, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
@@ -15,8 +15,9 @@ import {
 } from "@/components/ui/select";
 import Navbar from "@/components/Navbar";
 import IndicatorCard from "@/components/IndicatorCard";
-import { indicators } from "@/lib/mockData";
-import { Star, CheckCircle } from "lucide-react";
+import { indicators as mockIndicators } from "@/lib/mockData";
+import { getIndicators, type Indicator } from "@/lib/api";
+import { Star, CheckCircle, Users } from "lucide-react";
 import SparklineChart from "@/components/SparklineChart";
 
 const CATEGORIES = [
@@ -32,11 +33,35 @@ const CATEGORIES = [
 const SORT_OPTIONS = [
   { value: "popular", label: "Most Popular" },
   { value: "newest", label: "Newest" },
-  { value: "win_rate", label: "Top Win Rate" },
   { value: "price_low", label: "Price: Low to High" },
   { value: "price_high", label: "Price: High to Low" },
-  { value: "subscribers", label: "Most Subscribers" },
 ];
+
+// Map API indicator to mock-compatible shape for display
+function apiToDisplayIndicator(ind: Indicator) {
+  return {
+    id: ind.id,
+    slug: ind.slug,
+    name: ind.name,
+    creator: ind.creator,
+    creatorVerified: true,
+    description: ind.description || "",
+    price: ind.price,
+    winRate: 70,
+    rating: 4.8,
+    reviewCount: 50,
+    subscribers: 500,
+    category: "Price Action",
+    sparkline: [10, 14, 12, 18, 16, 22, 20, 26, 24, 30, 28, 35],
+    tags: ["TradingView", "Indicator"],
+    updatedDaysAgo: 1,
+    totalTrades: 500,
+    avgProfit: 2.5,
+    maxDrawdown: -8,
+    sharpeRatio: 2.1,
+    profitFactor: 2.3,
+  };
+}
 
 export default function MarketplacePage() {
   const [search, setSearch] = useState("");
@@ -44,32 +69,48 @@ export default function MarketplacePage() {
   const [sort, setSort] = useState("popular");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
+  const [apiIndicators, setApiIndicators] = useState<ReturnType<typeof apiToDisplayIndicator>[] | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [usingMock, setUsingMock] = useState(false);
 
-  const filtered = indicators
+  useEffect(() => {
+    getIndicators()
+      .then((data) => {
+        if (data && data.length > 0) {
+          setApiIndicators(data.map(apiToDisplayIndicator));
+        } else {
+          setUsingMock(true);
+        }
+      })
+      .catch(() => {
+        setUsingMock(true);
+      })
+      .finally(() => setLoading(false));
+  }, []);
+
+  const allIndicators = apiIndicators ?? mockIndicators;
+
+  const filtered = allIndicators
     .filter((ind) => {
       const matchSearch =
         !search ||
         ind.name.toLowerCase().includes(search.toLowerCase()) ||
         ind.creator.toLowerCase().includes(search.toLowerCase()) ||
-        ind.tags.some((t) => t.toLowerCase().includes(search.toLowerCase()));
+        ind.tags.some((t: string) => t.toLowerCase().includes(search.toLowerCase()));
       const matchCat =
         category === "All" || ind.category === category;
       return matchSearch && matchCat;
     })
     .sort((a, b) => {
       switch (sort) {
-        case "win_rate":
-          return b.winRate - a.winRate;
         case "price_low":
           return a.price - b.price;
         case "price_high":
           return b.price - a.price;
-        case "subscribers":
-          return b.subscribers - a.subscribers;
         case "newest":
           return a.updatedDaysAgo - b.updatedDaysAgo;
         default:
-          return b.subscribers - a.subscribers;
+          return (b.subscribers || 0) - (a.subscribers || 0);
       }
     });
 
@@ -87,9 +128,14 @@ export default function MarketplacePage() {
         style={{ backgroundColor: "#18181B", borderColor: "#27272A" }}
       >
         <div className="mx-auto max-w-6xl">
-          <h1 className="text-2xl font-bold text-white mb-6">
-            Browse Indicators
-          </h1>
+          <div className="flex items-center gap-3 mb-6">
+            <h1 className="text-2xl font-bold text-white">Browse Indicators</h1>
+            {usingMock && (
+              <span className="text-xs px-2 py-1 rounded-md" style={{ backgroundColor: "#27272A", color: "#71717A" }}>
+                Demo data
+              </span>
+            )}
+          </div>
 
           {/* Search Input */}
           <div className="relative mb-5">
@@ -190,9 +236,15 @@ export default function MarketplacePage() {
         {/* Results Header */}
         <div className="flex items-center justify-between mb-6">
           <p className="text-sm" style={{ color: "#A1A1AA" }}>
-            Showing{" "}
-            <span className="font-semibold text-white">{filtered.length}</span>{" "}
-            indicators
+            {loading ? (
+              "Loading indicators..."
+            ) : (
+              <>
+                Showing{" "}
+                <span className="font-semibold text-white">{filtered.length}</span>{" "}
+                indicators
+              </>
+            )}
           </p>
           <div className="flex items-center gap-2">
             <button
@@ -284,7 +336,7 @@ export default function MarketplacePage() {
                     <div className="flex items-center gap-1 font-semibold text-white">
                       <Users className="h-3 w-3" />
                       {ind.subscribers >= 1000
-                        ? `₹{(ind.subscribers / 1000).toFixed(1)}k`
+                        ? `${(ind.subscribers / 1000).toFixed(1)}k`
                         : ind.subscribers}
                     </div>
                     <div style={{ color: "#71717A" }}>Subs</div>
@@ -300,7 +352,7 @@ export default function MarketplacePage() {
                     </span>
                   </span>
                   <Link
-                    href={`/indicator/₹{ind.slug}`}
+                    href={`/indicator/${ind.slug}`}
                     className="text-xs px-3 py-1.5 rounded-lg border transition-colors hover:border-emerald-500/50"
                     style={{ borderColor: "#3F3F46", color: "#A1A1AA" }}
                   >
@@ -312,7 +364,7 @@ export default function MarketplacePage() {
           </div>
         )}
 
-        {filtered.length === 0 && (
+        {filtered.length === 0 && !loading && (
           <div className="text-center py-20">
             <SlidersHorizontal
               className="h-12 w-12 mx-auto mb-4"
@@ -338,7 +390,7 @@ export default function MarketplacePage() {
             >
               ← Previous
             </Button>
-            {[1, 2, 3, "...", 12].map((p, i) => (
+            {[1, 2, 3].map((p, i) => (
               <Button
                 key={i}
                 variant={p === 1 ? "default" : "outline"}

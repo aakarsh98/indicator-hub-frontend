@@ -21,21 +21,61 @@ import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Navbar from "@/components/Navbar";
 import EquityCurveChart from "@/components/EquityCurveChart";
-import { indicators, reviews } from "@/lib/mockData";
+import SubscribeButton from "@/components/SubscribeButton";
+import { indicators as mockIndicators, reviews } from "@/lib/mockData";
+import { getIndicator, type Indicator } from "@/lib/api";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
+// Merge API indicator with mock fields for rich display
+function buildDisplayIndicator(apiInd: Indicator, mockInd: typeof mockIndicators[0] | undefined) {
+  return {
+    id: apiInd.id,
+    slug: apiInd.slug,
+    name: apiInd.name,
+    creator: apiInd.creator,
+    creatorVerified: true,
+    description: apiInd.description || mockInd?.description || "A premium TradingView indicator.",
+    price: apiInd.price,
+    winRate: mockInd?.winRate ?? 70,
+    rating: mockInd?.rating ?? 4.8,
+    reviewCount: mockInd?.reviewCount ?? 50,
+    subscribers: mockInd?.subscribers ?? 500,
+    category: mockInd?.category ?? "Price Action",
+    updatedDaysAgo: mockInd?.updatedDaysAgo ?? 1,
+    totalTrades: mockInd?.totalTrades ?? 500,
+    avgProfit: mockInd?.avgProfit ?? 2.5,
+    maxDrawdown: mockInd?.maxDrawdown ?? -8.2,
+    sharpeRatio: mockInd?.sharpeRatio ?? 2.1,
+    profitFactor: mockInd?.profitFactor ?? 2.3,
+    fromApi: true,
+  };
+}
+
 export default async function IndicatorDetailPage({ params }: PageProps) {
   const { slug } = await params;
-  const indicator = indicators.find((i) => i.slug === slug);
 
-  if (!indicator) {
-    notFound();
+  // Try fetching from API first; fall back to mock data
+  let indicator: ReturnType<typeof buildDisplayIndicator> | (typeof mockIndicators)[0];
+  let fromApi = false;
+
+  try {
+    const apiInd = await getIndicator(slug);
+    const mockInd = mockIndicators.find((i) => i.slug === slug);
+    indicator = buildDisplayIndicator(apiInd, mockInd);
+    fromApi = true;
+  } catch {
+    // Fall back to mock data
+    const mockInd = mockIndicators.find((i) => i.slug === slug);
+    if (!mockInd) {
+      notFound();
+    }
+    indicator = mockInd!;
   }
 
-  const related = indicators.filter((i) => i.slug !== slug).slice(0, 3);
+  const related = mockIndicators.filter((i) => i.slug !== slug).slice(0, 3);
 
   return (
     <div style={{ backgroundColor: "#09090B", minHeight: "100vh" }}>
@@ -51,6 +91,11 @@ export default async function IndicatorDetailPage({ params }: PageProps) {
           <span>{indicator.category}</span>
           <ChevronRight className="h-3.5 w-3.5" />
           <span className="text-white">{indicator.name}</span>
+          {fromApi && (
+            <span className="ml-2 text-xs px-1.5 py-0.5 rounded" style={{ backgroundColor: "#27272A", color: "#71717A" }}>
+              live
+            </span>
+          )}
         </nav>
 
         {/* Two-Column Layout */}
@@ -104,7 +149,7 @@ export default async function IndicatorDetailPage({ params }: PageProps) {
                     {[1, 2, 3, 4, 5].map((s) => (
                       <Star
                         key={s}
-                        className={`h-4 w-4 ₹{s <= Math.round(indicator.rating) ? "fill-current" : "stroke-current fill-none"}`}
+                        className={`h-4 w-4 ${s <= Math.round(indicator.rating) ? "fill-current" : "stroke-current fill-none"}`}
                         style={{ color: "#EAB308" }}
                       />
                     ))}
@@ -163,17 +208,17 @@ export default async function IndicatorDetailPage({ params }: PageProps) {
               {[
                 {
                   label: "Win Rate",
-                  value: `₹{indicator.winRate}%`,
+                  value: `${indicator.winRate}%`,
                   color: "#10B981",
                 },
                 {
                   label: "Avg Profit",
-                  value: `+₹{indicator.avgProfit}%`,
+                  value: `+${indicator.avgProfit}%`,
                   color: "#10B981",
                 },
                 {
                   label: "Max Drawdown",
-                  value: `₹{indicator.maxDrawdown}%`,
+                  value: `${indicator.maxDrawdown}%`,
                   color: "#EF4444",
                 },
                 {
@@ -356,7 +401,7 @@ export default async function IndicatorDetailPage({ params }: PageProps) {
                       <div
                         className="h-full rounded-full"
                         style={{
-                          width: `₹{pct}%`,
+                          width: `${pct}%`,
                           backgroundColor: "#10B981",
                         }}
                       />
@@ -429,7 +474,7 @@ export default async function IndicatorDetailPage({ params }: PageProps) {
                 {related.map((ind) => (
                   <Link
                     key={ind.id}
-                    href={`/indicator/₹{ind.slug}`}
+                    href={`/indicator/${ind.slug}`}
                     className="rounded-xl border p-4 flex flex-col gap-3 transition-all hover:border-emerald-500/40"
                     style={{ backgroundColor: "#18181B", borderColor: "#27272A" }}
                   >
@@ -469,15 +514,15 @@ export default async function IndicatorDetailPage({ params }: PageProps) {
                 </span>
               </div>
 
-              <Button
-                className="w-full h-12 text-base font-semibold mb-3"
-                style={{ backgroundColor: "#10B981", color: "white" }}
-              >
-                Subscribe Now
-              </Button>
+              {/* Razorpay Subscribe Button */}
+              <SubscribeButton
+                indicatorSlug={indicator.slug}
+                indicatorName={indicator.name}
+                price={indicator.price}
+              />
 
-              <p className="text-xs text-center mb-5" style={{ color: "#71717A" }}>
-                Cancel anytime • Instant access
+              <p className="text-xs text-center mb-5 mt-2" style={{ color: "#71717A" }}>
+                Cancel anytime • Instant access • Secure payment via Razorpay
               </p>
 
               <Separator className="mb-5" style={{ backgroundColor: "#27272A" }} />

@@ -1,9 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { CheckCircle2, X, TrendingUp } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
   Accordion,
@@ -370,22 +368,21 @@ export default function PricingPage() {
                     ))}
                   </ul>
 
-                  <Button
-                    asChild
-                    className="w-full font-semibold h-10 text-sm"
+                  <a
+                    href={tier.href}
+                    className="w-full inline-flex items-center justify-center font-semibold h-10 text-sm rounded-md border transition-all"
                     style={
                       tier.popular
-                        ? { backgroundColor: "#10B981", color: "white" }
+                        ? { backgroundColor: "#10B981", color: "white", borderColor: "#10B981" }
                         : {
                             backgroundColor: "transparent",
                             borderColor: "#3F3F46",
                             color: "#A1A1AA",
                           }
                     }
-                    variant={tier.popular ? "default" : "outline"}
                   >
-                    <Link href={tier.href}>{tier.cta}</Link>
-                  </Button>
+                    {tier.cta}
+                  </a>
                 </div>
               );
             })}
@@ -529,23 +526,20 @@ export default function PricingPage() {
             Join thousands of traders and creators on IndicatorHub.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              asChild
-              size="lg"
-              className="font-semibold px-8 h-12"
-              style={{ backgroundColor: "#10B981", color: "white" }}
+            <a
+              href="/marketplace"
+              className="inline-flex items-center justify-center font-semibold px-8 h-12 rounded-md text-white transition-all"
+              style={{ backgroundColor: "#10B981" }}
             >
-              <Link href="/marketplace">Browse Marketplace</Link>
-            </Button>
-            <Button
-              asChild
-              variant="outline"
-              size="lg"
-              className="font-semibold px-8 h-12"
+              Browse Marketplace
+            </a>
+            <a
+              href="/signup?type=creator"
+              className="inline-flex items-center justify-center font-semibold px-8 h-12 rounded-md border transition-all"
               style={{ borderColor: "#3F3F46", color: "#A1A1AA" }}
             >
-              <Link href="/signup?type=creator">Start Selling</Link>
-            </Button>
+              Start Selling
+            </a>
           </div>
         </div>
       </section>

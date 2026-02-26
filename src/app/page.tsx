@@ -11,7 +11,6 @@ import {
   Users,
   ShieldCheck,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
   Accordion,
@@ -72,23 +71,20 @@ export default function HomePage() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <Button
-              asChild
-              size="lg"
-              className="text-base font-semibold px-8 h-12"
-              style={{ backgroundColor: "#10B981", color: "white" }}
+            <a
+              href="/marketplace"
+              className="inline-flex items-center justify-center text-base font-semibold px-8 h-12 rounded-md text-white transition-all"
+              style={{ backgroundColor: "#10B981" }}
             >
-              <Link href="/marketplace">Browse Indicators</Link>
-            </Button>
-            <Button
-              asChild
-              variant="outline"
-              size="lg"
-              className="text-base font-semibold px-8 h-12"
+              Browse Indicators
+            </a>
+            <a
+              href="#creators"
+              className="inline-flex items-center justify-center text-base font-semibold px-8 h-12 rounded-md border transition-all"
               style={{ borderColor: "#3F3F46", color: "#A1A1AA" }}
             >
-              <Link href="#creators">Become a Creator</Link>
-            </Button>
+              Become a Creator
+            </a>
           </div>
 
           {/* Trust Badges */}
@@ -401,23 +397,20 @@ export default function HomePage() {
             proven, data-backed indicators from top creators.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              asChild
-              size="lg"
-              className="font-semibold px-8 h-12"
-              style={{ backgroundColor: "#10B981", color: "white" }}
+            <a
+              href="/marketplace"
+              className="inline-flex items-center justify-center font-semibold px-8 h-12 rounded-md text-white transition-all"
+              style={{ backgroundColor: "#10B981" }}
             >
-              <Link href="/marketplace">Browse Marketplace</Link>
-            </Button>
-            <Button
-              asChild
-              variant="outline"
-              size="lg"
-              className="font-semibold px-8 h-12"
+              Browse Marketplace
+            </a>
+            <a
+              href="/signup?type=creator"
+              className="inline-flex items-center justify-center font-semibold px-8 h-12 rounded-md border transition-all"
               style={{ borderColor: "#3F3F46", color: "#A1A1AA" }}
             >
-              <Link href="/signup?type=creator">Start Selling</Link>
-            </Button>
+              Start Selling
+            </a>
           </div>
         </div>
       </section>

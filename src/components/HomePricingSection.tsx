@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Link from "next/link";
 import { CheckCircle2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
 const TIERS = [
@@ -208,22 +207,21 @@ export default function HomePricingSection() {
                   ))}
                 </ul>
 
-                <Button
-                  asChild
-                  className="w-full font-semibold h-10 text-sm"
+                <a
+                  href={tier.href}
+                  className="w-full inline-flex items-center justify-center font-semibold h-10 text-sm rounded-md border transition-all"
                   style={
                     tier.popular
-                      ? { backgroundColor: "#10B981", color: "white" }
+                      ? { backgroundColor: "#10B981", color: "white", borderColor: "#10B981" }
                       : {
                           backgroundColor: "transparent",
                           borderColor: "#3F3F46",
                           color: "#A1A1AA",
                         }
                   }
-                  variant={tier.popular ? "default" : "outline"}
                 >
-                  <Link href={tier.href}>{tier.cta}</Link>
-                </Button>
+                  {tier.cta}
+                </a>
               </div>
             );
           })}

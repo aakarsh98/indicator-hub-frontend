@@ -95,3 +95,19 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+/* ===== Global Button & Link UX ===== */
+a, button {
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+a:hover, button:hover {
+  opacity: 0.9;
+  transform: scale(1.01);
+}
+
+a:active, button:active {
+  transform: scale(0.98);
+  opacity: 1;
+}

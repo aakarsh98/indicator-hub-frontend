@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
 import { Menu, X, TrendingUp } from "lucide-react";
 
 export default function Navbar() {
@@ -58,20 +57,19 @@ export default function Navbar() {
 
           {/* Desktop Buttons */}
           <div className="hidden md:flex items-center gap-3">
-            <Button
-              variant="ghost"
-              size="sm"
-              className="text-zinc-400 hover:text-white hover:bg-zinc-800"
+            <a
+              href="/login"
+              className="text-sm font-medium px-3 py-1.5 rounded-md text-zinc-400 hover:text-white hover:bg-zinc-800 transition-all"
             >
               Log In
-            </Button>
-            <Button
-              size="sm"
-              className="font-semibold"
-              style={{ backgroundColor: "#10B981", color: "white" }}
+            </a>
+            <a
+              href="/signup"
+              className="text-sm font-semibold px-3 py-1.5 rounded-md text-white transition-all"
+              style={{ backgroundColor: "#10B981" }}
             >
               Get Started
-            </Button>
+            </a>
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -115,20 +113,21 @@ export default function Navbar() {
             Creators
           </Link>
           <div className="flex gap-3 pt-2">
-            <Button
-              variant="ghost"
-              size="sm"
-              className="text-zinc-400 hover:text-white hover:bg-zinc-800"
+            <a
+              href="/login"
+              className="text-sm font-medium px-3 py-1.5 rounded-md text-zinc-400 hover:text-white hover:bg-zinc-800 transition-all"
+              onClick={() => setMobileOpen(false)}
             >
               Log In
-            </Button>
-            <Button
-              size="sm"
-              className="font-semibold"
-              style={{ backgroundColor: "#10B981", color: "white" }}
+            </a>
+            <a
+              href="/signup"
+              className="text-sm font-semibold px-3 py-1.5 rounded-md text-white transition-all"
+              style={{ backgroundColor: "#10B981" }}
+              onClick={() => setMobileOpen(false)}
             >
               Get Started
-            </Button>
+            </a>
           </div>
         </div>
       )}

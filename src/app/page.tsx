@@ -232,14 +232,13 @@ export default function HomePage() {
                   </li>
                 ))}
               </ul>
-              <Button
-                asChild
-                size="lg"
-                className="font-semibold px-8 h-11"
-                style={{ backgroundColor: "#10B981", color: "white" }}
+              <a
+                href="/signup?type=creator"
+                className="inline-block font-semibold px-8 py-3 rounded-lg text-white text-center"
+                style={{ backgroundColor: "#10B981" }}
               >
-                <Link href="/signup?type=creator">Start Selling →</Link>
-              </Button>
+                Start Selling →
+              </a>
             </div>
 
             {/* Right — Creator Card */}

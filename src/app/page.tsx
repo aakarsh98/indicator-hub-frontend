@@ -271,7 +271,7 @@ export default function HomePage() {
                 {[
                   { label: "Indicators", value: "12" },
                   { label: "Subscribers", value: "3.4k" },
-                  { label: "Revenue", value: "$28k" },
+                  { label: "Revenue", value: "₹23L" },
                 ].map((stat) => (
                   <div key={stat.label} className="text-center rounded-lg p-3" style={{ backgroundColor: "#09090B" }}>
                     <div className="text-xl font-bold text-white">{stat.value}</div>
@@ -283,7 +283,7 @@ export default function HomePage() {
               </div>
               <p className="text-sm italic" style={{ color: "#A1A1AA" }}>
                 &ldquo;IndicatorHub changed my life. I went from freelancing Pine
-                Script gigs to earning $8k/month passively while I trade.&rdquo;
+                Script gigs to earning ₹8k/month passively while I trade.&rdquo;
               </p>
             </div>
           </div>
@@ -303,7 +303,7 @@ export default function HomePage() {
             {[
               {
                 name: "Starter Indicators",
-                price: "$9–15",
+                price: "₹9–15",
                 desc: "Basic trend & momentum tools",
                 popular: false,
                 features: [
@@ -315,7 +315,7 @@ export default function HomePage() {
               },
               {
                 name: "Pro Indicators",
-                price: "$19–35",
+                price: "₹19–35",
                 desc: "Advanced multi-factor strategies",
                 popular: true,
                 features: [
@@ -328,7 +328,7 @@ export default function HomePage() {
               },
               {
                 name: "Elite Indicators",
-                price: "$39–49",
+                price: "₹39–49",
                 desc: "AI-powered & institutional-grade",
                 popular: false,
                 features: [
@@ -466,7 +466,7 @@ export default function HomePage() {
             {faqs.map((faq, i) => (
               <AccordionItem
                 key={i}
-                value={`item-${i}`}
+                value={`item-₹{i}`}
                 className="rounded-xl border px-6"
                 style={{
                   backgroundColor: "#18181B",
@@ -614,7 +614,7 @@ export default function HomePage() {
             style={{ borderColor: "#18181B" }}
           >
             <p className="text-sm" style={{ color: "#71717A" }}>
-              © 2026 SLV Trades. All rights reserved.
+              © 2026 Octave Finance India. All rights reserved.
             </p>
             <div className="flex items-center gap-4">
               <ShieldCheck className="h-4 w-4" style={{ color: "#71717A" }} />

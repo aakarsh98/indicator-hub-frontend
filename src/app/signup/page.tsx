@@ -78,7 +78,7 @@ export default function SignupPage() {
               { label: "2,400+", desc: "Active Subscribers" },
               { label: "180+", desc: "Indicators Listed" },
               { label: "50+", desc: "Verified Creators" },
-              { label: "$28k", desc: "Top Creator Earnings" },
+              { label: "₹23L", desc: "Top Creator Earnings" },
             ].map((stat) => (
               <div key={stat.label} className="rounded-xl p-4" style={{ backgroundColor: "rgba(24,24,27,0.6)", border: "1px solid #27272A" }}>
                 <div className="text-xl font-bold text-white">{stat.label}</div>
@@ -214,7 +214,7 @@ export default function SignupPage() {
                   className="mt-0.5 h-4 w-4 rounded flex items-center justify-center flex-shrink-0 transition-all"
                   style={{
                     backgroundColor: agreed ? "#10B981" : "transparent",
-                    border: `2px solid ${agreed ? "#10B981" : "#3F3F46"}`,
+                    border: `2px solid ₹{agreed ? "#10B981" : "#3F3F46"}`,
                   }}
                 >
                   {agreed && (

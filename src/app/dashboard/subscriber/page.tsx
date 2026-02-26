@@ -32,7 +32,7 @@ const SUBSCRIPTIONS = [
     status: "Active",
     winRate: "72%",
     since: "Jan 2026",
-    price: "$29/mo",
+    price: "₹499/mo",
   },
   {
     name: "AI Trend Scanner v3",
@@ -40,7 +40,7 @@ const SUBSCRIPTIONS = [
     status: "Active",
     winRate: "78%",
     since: "Dec 2025",
-    price: "$49/mo",
+    price: "₹999/mo",
   },
   {
     name: "Volume Profile Deluxe",
@@ -48,7 +48,7 @@ const SUBSCRIPTIONS = [
     status: "Active",
     winRate: "68%",
     since: "Nov 2025",
-    price: "$19/mo",
+    price: "₹349/mo",
   },
   {
     name: "Liquidity Sweep Detector",
@@ -56,7 +56,7 @@ const SUBSCRIPTIONS = [
     status: "Pending Setup",
     winRate: "65%",
     since: "Feb 2026",
-    price: "$15/mo",
+    price: "₹249/mo",
   },
   {
     name: "Multi-TF Momentum",
@@ -64,24 +64,24 @@ const SUBSCRIPTIONS = [
     status: "Expired",
     winRate: "70%",
     since: "Oct 2025",
-    price: "$24/mo",
+    price: "₹449/mo",
   },
 ];
 
 const BILLING_HISTORY = [
-  { date: "Feb 1, 2026", indicator: "SMC Order Blocks Pro", amount: "$29.00", status: "Paid" },
-  { date: "Feb 1, 2026", indicator: "AI Trend Scanner v3", amount: "$49.00", status: "Paid" },
-  { date: "Feb 1, 2026", indicator: "Volume Profile Deluxe", amount: "$19.00", status: "Paid" },
-  { date: "Feb 1, 2026", indicator: "Liquidity Sweep Detector", amount: "$15.00", status: "Paid" },
-  { date: "Jan 1, 2026", indicator: "Multi-TF Momentum", amount: "$24.00", status: "Paid" },
-  { date: "Jan 1, 2026", indicator: "Volume Profile Deluxe", amount: "$19.00", status: "Paid" },
+  { date: "Feb 1, 2026", indicator: "SMC Order Blocks Pro", amount: "₹29.00", status: "Paid" },
+  { date: "Feb 1, 2026", indicator: "AI Trend Scanner v3", amount: "₹49.00", status: "Paid" },
+  { date: "Feb 1, 2026", indicator: "Volume Profile Deluxe", amount: "₹19.00", status: "Paid" },
+  { date: "Feb 1, 2026", indicator: "Liquidity Sweep Detector", amount: "₹15.00", status: "Paid" },
+  { date: "Jan 1, 2026", indicator: "Multi-TF Momentum", amount: "₹24.00", status: "Paid" },
+  { date: "Jan 1, 2026", indicator: "Volume Profile Deluxe", amount: "₹19.00", status: "Paid" },
 ];
 
 const FAVORITES = [
-  { name: "Fibonacci Zones Pro", creator: "FibMaster", price: "$22/mo", rating: "4.7" },
-  { name: "HTF Supply & Demand", creator: "SDTrader", price: "$27/mo", rating: "4.8" },
-  { name: "VWAP Bands Elite", creator: "QuantEdge", price: "$19/mo", rating: "4.6" },
-  { name: "EMA Ribbon Pro", creator: "TrendKing", price: "$12/mo", rating: "4.5" },
+  { name: "Fibonacci Zones Pro", creator: "FibMaster", price: "₹22/mo", rating: "4.7" },
+  { name: "HTF Supply & Demand", creator: "SDTrader", price: "₹27/mo", rating: "4.8" },
+  { name: "VWAP Bands Elite", creator: "QuantEdge", price: "₹349/mo", rating: "4.6" },
+  { name: "EMA Ribbon Pro", creator: "TrendKing", price: "₹12/mo", rating: "4.5" },
 ];
 
 const STATUS_CONFIG: Record<string, { dot: string; text: string; badge: string }> = {
@@ -169,7 +169,7 @@ export default function SubscriberDashboardPage() {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
               <div className="text-sm mb-1" style={{ color: "#71717A" }}>Monthly Spend</div>
-              <div className="text-3xl font-bold text-white">$131<span className="text-lg font-normal" style={{ color: "#71717A" }}>/mo</span></div>
+              <div className="text-3xl font-bold text-white">₹131<span className="text-lg font-normal" style={{ color: "#71717A" }}>/mo</span></div>
             </div>
             <div className="flex flex-wrap gap-2">
               {SUBSCRIPTIONS.filter(s => s.status === "Active").map(s => (

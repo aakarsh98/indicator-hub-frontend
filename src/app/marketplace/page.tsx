@@ -284,7 +284,7 @@ export default function MarketplacePage() {
                     <div className="flex items-center gap-1 font-semibold text-white">
                       <Users className="h-3 w-3" />
                       {ind.subscribers >= 1000
-                        ? `${(ind.subscribers / 1000).toFixed(1)}k`
+                        ? `₹{(ind.subscribers / 1000).toFixed(1)}k`
                         : ind.subscribers}
                     </div>
                     <div style={{ color: "#71717A" }}>Subs</div>
@@ -294,13 +294,13 @@ export default function MarketplacePage() {
                 {/* Price + Action */}
                 <div className="flex flex-col items-end gap-2 flex-shrink-0">
                   <span className="font-bold text-lg" style={{ color: "#10B981" }}>
-                    ${ind.price}
+                    ₹{ind.price}
                     <span className="text-xs font-normal" style={{ color: "#71717A" }}>
                       /mo
                     </span>
                   </span>
                   <Link
-                    href={`/indicator/${ind.slug}`}
+                    href={`/indicator/₹{ind.slug}`}
                     className="text-xs px-3 py-1.5 rounded-lg border transition-colors hover:border-emerald-500/50"
                     style={{ borderColor: "#3F3F46", color: "#A1A1AA" }}
                   >

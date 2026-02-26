@@ -104,7 +104,7 @@ export default async function IndicatorDetailPage({ params }: PageProps) {
                     {[1, 2, 3, 4, 5].map((s) => (
                       <Star
                         key={s}
-                        className={`h-4 w-4 ${s <= Math.round(indicator.rating) ? "fill-current" : "stroke-current fill-none"}`}
+                        className={`h-4 w-4 ₹{s <= Math.round(indicator.rating) ? "fill-current" : "stroke-current fill-none"}`}
                         style={{ color: "#EAB308" }}
                       />
                     ))}
@@ -163,17 +163,17 @@ export default async function IndicatorDetailPage({ params }: PageProps) {
               {[
                 {
                   label: "Win Rate",
-                  value: `${indicator.winRate}%`,
+                  value: `₹{indicator.winRate}%`,
                   color: "#10B981",
                 },
                 {
                   label: "Avg Profit",
-                  value: `+${indicator.avgProfit}%`,
+                  value: `+₹{indicator.avgProfit}%`,
                   color: "#10B981",
                 },
                 {
                   label: "Max Drawdown",
-                  value: `${indicator.maxDrawdown}%`,
+                  value: `₹{indicator.maxDrawdown}%`,
                   color: "#EF4444",
                 },
                 {
@@ -356,7 +356,7 @@ export default async function IndicatorDetailPage({ params }: PageProps) {
                       <div
                         className="h-full rounded-full"
                         style={{
-                          width: `${pct}%`,
+                          width: `₹{pct}%`,
                           backgroundColor: "#10B981",
                         }}
                       />
@@ -429,7 +429,7 @@ export default async function IndicatorDetailPage({ params }: PageProps) {
                 {related.map((ind) => (
                   <Link
                     key={ind.id}
-                    href={`/indicator/${ind.slug}`}
+                    href={`/indicator/₹{ind.slug}`}
                     className="rounded-xl border p-4 flex flex-col gap-3 transition-all hover:border-emerald-500/40"
                     style={{ backgroundColor: "#18181B", borderColor: "#27272A" }}
                   >
@@ -444,7 +444,7 @@ export default async function IndicatorDetailPage({ params }: PageProps) {
                     <div className="flex items-center justify-between text-xs">
                       <span style={{ color: "#10B981" }}>{ind.winRate}% WR</span>
                       <span className="font-bold" style={{ color: "#10B981" }}>
-                        ${ind.price}/mo
+                        ₹{ind.price}/mo
                       </span>
                     </div>
                   </Link>
@@ -462,7 +462,7 @@ export default async function IndicatorDetailPage({ params }: PageProps) {
             >
               <div className="flex items-baseline gap-2 mb-6">
                 <span className="text-5xl font-bold text-white">
-                  ${indicator.price}
+                  ₹{indicator.price}
                 </span>
                 <span className="text-base" style={{ color: "#71717A" }}>
                   /month

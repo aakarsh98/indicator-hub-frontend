@@ -25,7 +25,7 @@ const equityData = [
   { month: "Feb", value: 18400 },
 ];
 
-const formatYAxis = (v: number) => `$${(v / 1000).toFixed(0)}k`;
+const formatYAxis = (v: number) => `₹${(v / 1000).toFixed(0)}k`;
 
 const CustomTooltip = ({
   active,
@@ -48,7 +48,7 @@ const CustomTooltip = ({
       >
         <p className="font-semibold">{label}</p>
         <p style={{ color: "#10B981" }}>
-          ${payload[0].value.toLocaleString()}
+          ₹{payload[0].value.toLocaleString()}
         </p>
       </div>
     );
@@ -64,14 +64,14 @@ export default function EquityCurveChart() {
           <span className="text-xs" style={{ color: "#71717A" }}>
             Starting Value
           </span>
-          <div className="text-base font-semibold text-white">$10,000</div>
+          <div className="text-base font-semibold text-white">₹10,000</div>
         </div>
         <div className="ml-auto text-right">
           <span className="text-xs" style={{ color: "#71717A" }}>
             Current Value
           </span>
           <div className="text-base font-semibold" style={{ color: "#10B981" }}>
-            $18,400{" "}
+            ₹18,400{" "}
             <span className="text-sm font-normal text-emerald-400">
               (+84%)
             </span>

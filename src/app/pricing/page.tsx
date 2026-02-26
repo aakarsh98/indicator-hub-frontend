@@ -16,7 +16,7 @@ import Navbar from "@/components/Navbar";
 const SUBSCRIBER_TIERS = [
   {
     name: "Starter Indicators",
-    price: "$9–15",
+    price: "₹9–15",
     period: "/mo",
     desc: "Basic trend & momentum tools",
     popular: false,
@@ -29,7 +29,7 @@ const SUBSCRIBER_TIERS = [
   },
   {
     name: "Pro Indicators",
-    price: "$19–35",
+    price: "₹19–35",
     period: "/mo",
     desc: "Advanced multi-factor strategies",
     popular: true,
@@ -43,7 +43,7 @@ const SUBSCRIBER_TIERS = [
   },
   {
     name: "Elite Indicators",
-    price: "$39–49",
+    price: "₹39–49",
     period: "/mo",
     desc: "AI-powered & institutional-grade",
     popular: false,
@@ -60,7 +60,7 @@ const SUBSCRIBER_TIERS = [
 const CREATOR_TIERS = [
   {
     name: "Free",
-    price: "$0",
+    price: "₹0",
     period: "/mo",
     desc: "Get started selling",
     popular: false,
@@ -74,7 +74,7 @@ const CREATOR_TIERS = [
   },
   {
     name: "Creator Pro",
-    price: "$29",
+    price: "₹29",
     period: "/mo",
     desc: "Scale your business",
     popular: true,
@@ -299,7 +299,7 @@ export default function PricingPage() {
             {FAQS.map((faq, i) => (
               <AccordionItem
                 key={i}
-                value={`item-${i}`}
+                value={`item-₹{i}`}
                 className="rounded-xl border px-6"
                 style={{ backgroundColor: "#18181B", borderColor: "#27272A" }}
               >

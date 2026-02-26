@@ -64,31 +64,31 @@ const PENDING_APPROVALS = [
 const ACTIVITY_FEED = [
   { icon: "👤", color: "#3B82F6", text: "New user registered: john_trader", time: "2m ago" },
   { icon: "✅", color: "#10B981", text: "Indicator approved: Fibonacci Zones Pro", time: "14m ago" },
-  { icon: "💸", color: "#10B981", text: "Payout processed: $1,240 to Alex Chen", time: "1h ago" },
+  { icon: "💸", color: "#10B981", text: "Payout processed: ₹1,240 to Alex Chen", time: "1h ago" },
   { icon: "🚩", color: "#EF4444", text: "Review flagged: spam report on VolumeX", time: "2h ago" },
   { icon: "❌", color: "#71717A", text: "Subscription cancelled: user_847 → AI Scanner", time: "3h ago" },
   { icon: "👤", color: "#3B82F6", text: "New user registered: priya_trades", time: "4h ago" },
   { icon: "✅", color: "#10B981", text: "Creator verified: MarketOwl Pro", time: "5h ago" },
-  { icon: "💸", color: "#10B981", text: "Payout processed: $890 to TradeLab", time: "6h ago" },
+  { icon: "💸", color: "#10B981", text: "Payout processed: ₹890 to TradeLab", time: "6h ago" },
 ];
 
 const USERS = [
-  { name: "Alex Chen", email: "alex@tradersig.io", role: "Creator", joined: "Sep 2025", subs: "3.4k", revenue: "$28,490", status: "Active" },
-  { name: "Marcus Rivera", email: "marcus@example.com", role: "Subscriber", joined: "Jan 2026", subs: "5", revenue: "$0", status: "Active" },
-  { name: "TradeLab", email: "info@tradelab.io", role: "Creator", joined: "Aug 2025", subs: "1.8k", revenue: "$12,340", status: "Active" },
-  { name: "Priya Singh", email: "priya.s@example.com", role: "Subscriber", joined: "Dec 2025", subs: "3", revenue: "$0", status: "Active" },
-  { name: "QuantEdge", email: "quant@quantedge.io", role: "Creator", joined: "Jul 2025", subs: "4.2k", revenue: "$38,200", status: "Active" },
-  { name: "John Turner", email: "jturner@example.com", role: "Subscriber", joined: "Feb 2026", subs: "1", revenue: "$0", status: "Active" },
-  { name: "VolumeX", email: "admin@volumex.io", role: "Creator", joined: "Oct 2025", subs: "400", revenue: "$4,100", status: "Suspended" },
-  { name: "SwingKing", email: "swing@kingtrader.io", role: "Creator", joined: "Sep 2025", subs: "2.1k", revenue: "$18,900", status: "Active" },
+  { name: "Alex Chen", email: "alex@tradersig.io", role: "Creator", joined: "Sep 2025", subs: "3.4k", revenue: "₹28,490", status: "Active" },
+  { name: "Marcus Rivera", email: "marcus@example.com", role: "Subscriber", joined: "Jan 2026", subs: "5", revenue: "₹0", status: "Active" },
+  { name: "TradeLab", email: "info@tradelab.io", role: "Creator", joined: "Aug 2025", subs: "1.8k", revenue: "₹12,340", status: "Active" },
+  { name: "Priya Singh", email: "priya.s@example.com", role: "Subscriber", joined: "Dec 2025", subs: "3", revenue: "₹0", status: "Active" },
+  { name: "QuantEdge", email: "quant@quantedge.io", role: "Creator", joined: "Jul 2025", subs: "4.2k", revenue: "₹38,200", status: "Active" },
+  { name: "John Turner", email: "jturner@example.com", role: "Subscriber", joined: "Feb 2026", subs: "1", revenue: "₹0", status: "Active" },
+  { name: "VolumeX", email: "admin@volumex.io", role: "Creator", joined: "Oct 2025", subs: "400", revenue: "₹4,100", status: "Suspended" },
+  { name: "SwingKing", email: "swing@kingtrader.io", role: "Creator", joined: "Sep 2025", subs: "2.1k", revenue: "₹18,900", status: "Active" },
 ];
 
 const TOP_CREATORS = [
-  { name: "QuantEdge", subs: "4.2k", revenue: "$38,200", rating: "4.9", rank: 1 },
-  { name: "Alex Chen", subs: "3.4k", revenue: "$28,490", rating: "4.8", rank: 2 },
-  { name: "SwingKing", subs: "2.1k", revenue: "$18,900", rating: "4.7", rank: 3 },
-  { name: "TradeLab", subs: "1.8k", revenue: "$12,340", rating: "4.6", rank: 4 },
-  { name: "InstitutionalFX", subs: "1.5k", revenue: "$10,200", rating: "4.8", rank: 5 },
+  { name: "QuantEdge", subs: "4.2k", revenue: "₹38,200", rating: "4.9", rank: 1 },
+  { name: "Alex Chen", subs: "3.4k", revenue: "₹28,490", rating: "4.8", rank: 2 },
+  { name: "SwingKing", subs: "2.1k", revenue: "₹18,900", rating: "4.7", rank: 3 },
+  { name: "TradeLab", subs: "1.8k", revenue: "₹12,340", rating: "4.6", rank: 4 },
+  { name: "InstitutionalFX", subs: "1.5k", revenue: "₹10,200", rating: "4.8", rank: 5 },
 ];
 
 const ROLE_CONFIG: Record<string, { bg: string; color: string }> = {
@@ -155,7 +155,7 @@ export default function AdminPage() {
             </div>
             <div>
               <div className="text-sm font-medium text-white">Admin</div>
-              <div className="text-xs" style={{ color: "#71717A" }}>SLV Trades</div>
+              <div className="text-xs" style={{ color: "#71717A" }}>Octave Finance India</div>
             </div>
           </div>
           <button className="flex items-center gap-2 text-xs w-full px-2 py-1.5 rounded-lg hover:bg-zinc-800 transition-colors" style={{ color: "#71717A" }}>
@@ -180,8 +180,8 @@ export default function AdminPage() {
           {[
             { label: "Total Users", value: "4,832", change: "+340 this month", positive: true, icon: Users },
             { label: "Active Indicators", value: "187", change: "12 pending approval", positive: null, icon: LineChart, changeColor: "#EAB308" },
-            { label: "Monthly Revenue", value: "$48,290", change: "+18.4% MoM", positive: true, icon: DollarSign },
-            { label: "Platform Fees Earned", value: "$6,280", change: "Avg 13.2% rate", positive: null, icon: Wallet },
+            { label: "Monthly Revenue", value: "₹40,24,000", change: "+18.4% MoM", positive: true, icon: DollarSign },
+            { label: "Platform Fees Earned", value: "₹6,280", change: "Avg 13.2% rate", positive: null, icon: Wallet },
           ].map((stat) => (
             <div
               key={stat.label}
@@ -223,11 +223,11 @@ export default function AdminPage() {
           <ResponsiveContainer width="100%" height={240}>
             <ComposedChart data={REVENUE_DATA} margin={{ top: 0, right: 0, bottom: 0, left: -10 }}>
               <XAxis dataKey="month" tick={{ fill: "#71717A", fontSize: 12 }} axisLine={false} tickLine={false} />
-              <YAxis tick={{ fill: "#71717A", fontSize: 12 }} axisLine={false} tickLine={false} tickFormatter={(v) => `$${(v / 1000).toFixed(0)}k`} />
+              <YAxis tick={{ fill: "#71717A", fontSize: 12 }} axisLine={false} tickLine={false} tickFormatter={(v) => `₹${(v / 1000).toFixed(0)}k`} />
               <Tooltip
                 contentStyle={{ backgroundColor: "#27272A", border: "1px solid #3F3F46", borderRadius: "8px", color: "white" }}
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                formatter={((value: any, name: any) => [`$${Number(value).toLocaleString()}`, name === "gmv" ? "Total GMV" : "Platform Fees"]) as any}
+                formatter={((value: any, name: any) => [`₹${Number(value).toLocaleString()}`, name === "gmv" ? "Total GMV" : "Platform Fees"]) as any}
               />
               <Legend formatter={(value) => value === "gmv" ? "Total GMV" : "Platform Fees"} wrapperStyle={{ color: "#71717A", fontSize: 12 }} />
               <Bar dataKey="gmv" fill="rgba(63,63,70,0.8)" radius={[4, 4, 0, 0]} />
@@ -290,7 +290,7 @@ export default function AdminPage() {
                 >
                   <div
                     className="h-6 w-6 rounded-full flex items-center justify-center flex-shrink-0 text-xs mt-0.5"
-                    style={{ backgroundColor: `${item.color}20` }}
+                    style={{ backgroundColor: `₹{item.color}20` }}
                   >
                     {item.icon}
                   </div>

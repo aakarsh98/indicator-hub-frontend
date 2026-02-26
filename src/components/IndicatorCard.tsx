@@ -34,7 +34,7 @@ export default function IndicatorCard({
   compact = false,
 }: IndicatorCardProps) {
   const formatSubs = (n: number) =>
-    n >= 1000 ? `${(n / 1000).toFixed(1)}k` : n.toString();
+    n >= 1000 ? `₹{(n / 1000).toFixed(1)}k` : n.toString();
 
   return (
     <div
@@ -97,13 +97,13 @@ export default function IndicatorCard({
         {/* Price + CTA */}
         <div className="flex items-center justify-between mt-auto pt-1 border-t" style={{ borderColor: "#27272A" }}>
           <span className="font-bold text-base" style={{ color: "#10B981" }}>
-            ${price}
+            ₹{price}
             <span className="text-xs font-normal" style={{ color: "#71717A" }}>
               /mo
             </span>
           </span>
           <Link
-            href={`/indicator/${slug}`}
+            href={`/indicator/₹{slug}`}
             className="text-xs px-3 py-1.5 rounded-lg border transition-colors hover:border-emerald-500/50 hover:text-emerald-400"
             style={{ borderColor: "#3F3F46", color: "#A1A1AA" }}
           >

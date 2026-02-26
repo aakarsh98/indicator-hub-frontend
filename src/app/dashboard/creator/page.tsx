@@ -52,19 +52,19 @@ const REVENUE_DATA = [
 ];
 
 const MY_INDICATORS = [
-  { name: "SMC Order Blocks Pro", status: "Active", subscribers: 1247, revenue: "$3,619", winRate: "72%", rating: "4.8" },
-  { name: "Volume Profile Deluxe", status: "Active", subscribers: 890, revenue: "$1,691", winRate: "68%", rating: "4.6" },
-  { name: "Liquidity Sweep Detector", status: "Active", subscribers: 640, revenue: "$960", winRate: "65%", rating: "4.5" },
-  { name: "Multi-TF Momentum", status: "Under Review", subscribers: 0, revenue: "$0", winRate: "70%", rating: "—" },
-  { name: "AI Swing Signals", status: "Draft", subscribers: 0, revenue: "$0", winRate: "—", rating: "—" },
+  { name: "SMC Order Blocks Pro", status: "Active", subscribers: 1247, revenue: "₹3,619", winRate: "72%", rating: "4.8" },
+  { name: "Volume Profile Deluxe", status: "Active", subscribers: 890, revenue: "₹1,691", winRate: "68%", rating: "4.6" },
+  { name: "Liquidity Sweep Detector", status: "Active", subscribers: 640, revenue: "₹960", winRate: "65%", rating: "4.5" },
+  { name: "Multi-TF Momentum", status: "Under Review", subscribers: 0, revenue: "₹0", winRate: "70%", rating: "—" },
+  { name: "AI Swing Signals", status: "Draft", subscribers: 0, revenue: "₹0", winRate: "—", rating: "—" },
 ];
 
 const RECENT_SUBSCRIBERS = [
-  { name: "Marcus R.", indicator: "SMC Order Blocks Pro", date: "2h ago", amount: "$29" },
-  { name: "Priya S.", indicator: "Volume Profile Deluxe", date: "4h ago", amount: "$19" },
-  { name: "James K.", indicator: "SMC Order Blocks Pro", date: "6h ago", amount: "$29" },
-  { name: "Tom W.", indicator: "Liquidity Sweep Detector", date: "8h ago", amount: "$15" },
-  { name: "Anna L.", indicator: "SMC Order Blocks Pro", date: "12h ago", amount: "$29" },
+  { name: "Marcus R.", indicator: "SMC Order Blocks Pro", date: "2h ago", amount: "₹29" },
+  { name: "Priya S.", indicator: "Volume Profile Deluxe", date: "4h ago", amount: "₹19" },
+  { name: "James K.", indicator: "SMC Order Blocks Pro", date: "6h ago", amount: "₹29" },
+  { name: "Tom W.", indicator: "Liquidity Sweep Detector", date: "8h ago", amount: "₹15" },
+  { name: "Anna L.", indicator: "SMC Order Blocks Pro", date: "12h ago", amount: "₹29" },
 ];
 
 const STATUS_STYLES: Record<string, { bg: string; text: string }> = {
@@ -148,7 +148,7 @@ export default function CreatorDashboardPage() {
         {/* Stats Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
           {[
-            { label: "Total Revenue", value: "$12,847", change: "+12.5% from last month", positive: true, icon: DollarSign },
+            { label: "Total Revenue", value: "₹10,67,000", change: "+12.5% from last month", positive: true, icon: DollarSign },
             { label: "Active Subscribers", value: "1,247", change: "+48 this week", positive: true, icon: Users },
             { label: "Total Indicators", value: "12", change: "3 pending review", positive: null, icon: LineChart },
             { label: "Avg Rating", value: "4.8 ★", change: "124 reviews", positive: null, icon: TrendingUp },
@@ -193,11 +193,11 @@ export default function CreatorDashboardPage() {
           <ResponsiveContainer width="100%" height={240}>
             <BarChart data={REVENUE_DATA} margin={{ top: 0, right: 0, bottom: 0, left: -20 }}>
               <XAxis dataKey="month" tick={{ fill: "#71717A", fontSize: 12 }} axisLine={false} tickLine={false} />
-              <YAxis tick={{ fill: "#71717A", fontSize: 12 }} axisLine={false} tickLine={false} tickFormatter={(v) => `$${(v / 1000).toFixed(0)}k`} />
+              <YAxis tick={{ fill: "#71717A", fontSize: 12 }} axisLine={false} tickLine={false} tickFormatter={(v) => `₹${(v / 1000).toFixed(0)}k`} />
               <Tooltip
                 contentStyle={{ backgroundColor: "#27272A", border: "1px solid #3F3F46", borderRadius: "8px", color: "white" }}
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                formatter={((value: any) => [`$${Number(value ?? 0).toLocaleString()}`, "Revenue"]) as any}
+                formatter={((value: any) => [`₹${Number(value ?? 0).toLocaleString()}`, "Revenue"]) as any}
               />
               <Bar dataKey="revenue" fill="rgba(16,185,129,0.7)" radius={[4, 4, 0, 0]} />
             </BarChart>
@@ -290,7 +290,7 @@ export default function CreatorDashboardPage() {
           {[
             { icon: Plus, label: "Add Indicator", desc: "List a new indicator on the marketplace" },
             { icon: Monitor, label: "Manage TradingView", desc: "Update session IDs and access" },
-            { icon: Wallet, label: "Request Payout", desc: "Available: $3,240" },
+            { icon: Wallet, label: "Request Payout", desc: "Available: ₹3,240" },
           ].map((action) => (
             <button
               key={action.label}

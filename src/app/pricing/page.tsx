@@ -17,6 +17,7 @@ const SUBSCRIBER_TIERS = [
   {
     name: "Starter Indicators",
     price: "$9–15",
+    period: "/mo",
     desc: "Basic trend & momentum tools",
     popular: false,
     features: [
@@ -29,6 +30,7 @@ const SUBSCRIBER_TIERS = [
   {
     name: "Pro Indicators",
     price: "$19–35",
+    period: "/mo",
     desc: "Advanced multi-factor strategies",
     popular: true,
     features: [
@@ -42,6 +44,7 @@ const SUBSCRIBER_TIERS = [
   {
     name: "Elite Indicators",
     price: "$39–49",
+    period: "/mo",
     desc: "AI-powered & institutional-grade",
     popular: false,
     features: [
@@ -198,11 +201,8 @@ export default function PricingPage() {
                 <h3 className="text-lg font-semibold text-white mb-1">{tier.name}</h3>
                 <div className="flex items-baseline gap-1 mb-2">
                   <span className="text-3xl font-bold text-white">{tier.price}</span>
-                  {"period" in tier && tier.period && (
+                  {tier.period && (
                     <span className="text-sm" style={{ color: "#71717A" }}>{tier.period}</span>
-                  )}
-                  {!("period" in tier) && (
-                    <span className="text-sm" style={{ color: "#71717A" }}>/mo</span>
                   )}
                 </div>
                 <p className="text-sm mb-6" style={{ color: "#A1A1AA" }}>{tier.desc}</p>

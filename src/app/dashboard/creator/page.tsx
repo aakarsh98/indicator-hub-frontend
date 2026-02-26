@@ -196,7 +196,8 @@ export default function CreatorDashboardPage() {
               <YAxis tick={{ fill: "#71717A", fontSize: 12 }} axisLine={false} tickLine={false} tickFormatter={(v) => `$${(v / 1000).toFixed(0)}k`} />
               <Tooltip
                 contentStyle={{ backgroundColor: "#27272A", border: "1px solid #3F3F46", borderRadius: "8px", color: "white" }}
-                formatter={(value: number) => [`$${value.toLocaleString()}`, "Revenue"]}
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                formatter={((value: any) => [`$${Number(value ?? 0).toLocaleString()}`, "Revenue"]) as any}
               />
               <Bar dataKey="revenue" fill="rgba(16,185,129,0.7)" radius={[4, 4, 0, 0]} />
             </BarChart>
